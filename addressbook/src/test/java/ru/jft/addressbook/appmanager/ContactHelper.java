@@ -42,15 +42,6 @@ public class ContactHelper {
         wd.findElement(By.name("email")).click();
         wd.findElement(By.name("email")).clear();
         wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
-        if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[4]")).isSelected()) {
-            wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[4]")).click();
-        }
-        if (!wd.findElement(By.xpath("//div[@id='content']/form/select[2]//option[3]")).isSelected()) {
-            wd.findElement(By.xpath("//div[@id='content']/form/select[2]//option[3]")).click();
-        }
-       wd.findElement(By.name("byear")).click();
-       wd.findElement(By.name("byear")).clear();
-       wd.findElement(By.name("byear")).sendKeys(contactData.getYear());
     }
 
     public void gotoContactPage() {

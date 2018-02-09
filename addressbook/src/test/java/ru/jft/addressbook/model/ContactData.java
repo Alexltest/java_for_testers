@@ -9,7 +9,6 @@ public class ContactData {
     private final String address;
     private final String phone;
     private final String email;
-    private final String year;
 
     public ContactData(String firstname, String middlename, String lastname, String nickname, String company, String address, String phone, String email, String year) {
         this.firstname = firstname;
@@ -20,7 +19,6 @@ public class ContactData {
         this.address = address;
         this.phone = phone;
         this.email = email;
-        this.year = year;
     }
 
     public String getFirstname() {
@@ -55,7 +53,4 @@ public class ContactData {
         return email;
     }
 
-    public String getYear() {
-        return year;
-    }
 }
