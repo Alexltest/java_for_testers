@@ -9,7 +9,7 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification () throws InterruptedException {
         app.getContactHelper().selectContact();
         app.getContactHelper().initContactModification();
-        app.getContactHelper().fillContactForm(new ContactData("First", "Middle", "Last", "Alex", "Vgr", "Russia", "867575", "sbs@example.com", "1990"));
+        app.getContactHelper().fillContactForm(new ContactData("First", "Middle", "Last", "Alex", "Vgr", "Russia", "867575", "sbs@example.com"));
         app.getContactHelper().submitContactModification();
         Thread.sleep(5000);
     }
