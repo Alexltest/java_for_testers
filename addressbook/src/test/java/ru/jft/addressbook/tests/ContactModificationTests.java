@@ -8,9 +8,8 @@ public class ContactModificationTests extends TestBase {
     @Test
     public void testContactModification () throws InterruptedException {
         if (! app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().CreateContact(new ContactData("First", "Middle", "Last", "Alex", "Vgr", "Russia", "867575", "sbs@example.com", null), false);
+            app.getContactHelper().CreateContact(new ContactData("First", "Middle", "Last", "Alex", "Vgr", "Russia", "867575", "sbs@example.com", null), true);
         }
-        Thread.sleep(5000);
         app.getContactHelper().selectContact();
         app.getContactHelper().initContactModification();
         app.getContactHelper().fillContactForm(new ContactData("First", "Middle", "Last", "Alex", "Vgr", "Russia", "867575", "sbs@example.com", null), false);
