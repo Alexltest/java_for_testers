@@ -3,9 +3,13 @@ package ru.jft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.jft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -19,11 +23,7 @@ public class ContactHelper extends HelperBase {
 
     public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstname());
-        type(By.name("middlename"), contactData.getMiddlename());
         type(By.name("lastname"), contactData.getLastname());
-        type(By.name("nickname"), contactData.getNickname());
-        type(By.name("company"), contactData.getCompany());
-        type(By.name("address"), contactData.getAddress());
         type(By.name("mobile"), contactData.getPhone());
         type(By.name("email"), contactData.getEmail());
 
@@ -68,5 +68,17 @@ public class ContactHelper extends HelperBase {
 
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element : elements) {
+            String name = element.findElements(By.tagName("td")).get(2).getText();
+            String lastname = element.findElements(By.tagName("td")).get(1).getText();
+            ContactData contact = new ContactData (name, lastname, null, null, null);
+            contacts.add(contact);
+        }
+        return contacts;
     }
 }
