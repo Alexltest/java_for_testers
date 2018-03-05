@@ -1,7 +1,6 @@
 package ru.jft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -34,7 +33,7 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    public void gotoContactPage() {
+    public void goTo() {
         click(By.linkText("add new"));
     }
 
@@ -59,18 +58,22 @@ public class ContactHelper extends HelperBase {
     }
 
     public void CreateContact(ContactData contact, boolean b) {
-        gotoContactPage();
+        goTo();
         fillContactForm(contact, b);
         submitContactCreation();
         returnToContactPage();
-
     }
 
-    public boolean isThereAContact() {
-        return isElementPresent(By.name("selected[]"));
+
+    public void modify(ContactData contact) throws InterruptedException {
+        selectContact();
+        initContactModification();
+        fillContactForm(contact, false);
+        submitContactModification();
+        Thread.sleep(5000);
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {

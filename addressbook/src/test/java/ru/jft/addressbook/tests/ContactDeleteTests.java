@@ -1,6 +1,7 @@
 package ru.jft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.jft.addressbook.model.ContactData;
 
@@ -9,17 +10,21 @@ import java.util.List;
 
 public class ContactDeleteTests extends TestBase {
 
-    @Test
-    public void testContactDelete() throws InterruptedException {
-        if (! app.getContactHelper().isThereAContact()) {
+    @BeforeMethod
+    public void ensurePreconditions() {
+        if (app.getContactHelper().list().size() == 0) {
             app.getContactHelper().CreateContact(new ContactData("First", "Last", "867575", "sbs@example.com", "test"), true);
         }
-        List<ContactData> before = app.getContactHelper().getContactList();
+    }
+
+    @Test
+    public void testContactDelete() throws InterruptedException {
+        List<ContactData> before = app.getContactHelper().list();
         app.getContactHelper().selectContact();
         app.getContactHelper().deleteContact();
-        app.getNavigationHelper().closeAlert();
+        app.goTo().closeAlert();
         Thread.sleep(5000);
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> after = app.getContactHelper().list();
 
         Assert.assertEquals(after.size(), before.size() - 1);
 

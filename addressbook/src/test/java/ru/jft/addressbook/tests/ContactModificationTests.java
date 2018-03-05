@@ -1,6 +1,7 @@
 package ru.jft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.jft.addressbook.model.ContactData;
 
@@ -9,19 +10,20 @@ import java.util.List;
 
 public class ContactModificationTests extends TestBase {
 
-    @Test
-    public void testContactModification () throws InterruptedException {
-        if (! app.getContactHelper().isThereAContact()) {
+
+    @BeforeMethod
+    public void ensurePreconditions() {
+        if (app.getContactHelper().list().size() == 0) {
             app.getContactHelper().CreateContact(new ContactData("First", "Last", "867575", "sbs@example.com", "test"), true);
         }
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().selectContact();
-        app.getContactHelper().initContactModification();
+    }
+
+    @Test
+    public void testContactModification () throws InterruptedException {
+        List<ContactData> before = app.getContactHelper().list();
         ContactData contact = new ContactData("First", "Last", "867575", "sbs@example.com", "test");
-        app.getContactHelper().fillContactForm(contact, false);
-        app.getContactHelper().submitContactModification();
-        Thread.sleep(5000);
-        List<ContactData> after = app.getContactHelper().getContactList();
+        app.getContactHelper().modify(contact);
+        List<ContactData> after = app.getContactHelper().list();
 
         Assert.assertEquals(after.size(), before.size());
 
@@ -30,4 +32,5 @@ public class ContactModificationTests extends TestBase {
         after.sort(comparator);
         Assert.assertEquals(before, after);
     }
+
 }
