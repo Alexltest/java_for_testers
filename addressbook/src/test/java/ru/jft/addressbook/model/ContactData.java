@@ -1,22 +1,11 @@
 package ru.jft.addressbook.model;
 
 public class ContactData {
-    private final String firstname;
-    private final String lastname;
-    private final String phone;
-    private final String email;
+    private String firstname;
+    private String lastname;
+    private String phone;
+    private String email;
     private String group;
-
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", group='" + group + '\'' +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -30,19 +19,43 @@ public class ContactData {
     }
 
     @Override
+    public String toString() {
+        return "ContactData{" +
+                "firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         int result = firstname != null ? firstname.hashCode() : 0;
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         return result;
     }
 
-    public ContactData(String firstname, String lastname, String phone, String email, String group) {
+    public ContactData withFirstname(String firstname) {
         this.firstname = firstname;
-        this.lastname = lastname;
-        this.phone = phone;
-        this.email = email;
-        this.group = group;
+        return this;
+    }
 
+    public ContactData withLastname(String lastname) {
+        this.lastname = lastname;
+        return this;
+    }
+
+    public ContactData withPhone(String phone) {
+        this.phone = phone;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
     }
 
     public String getFirstname() {

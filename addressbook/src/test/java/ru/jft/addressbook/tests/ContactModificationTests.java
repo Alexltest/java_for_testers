@@ -14,14 +14,14 @@ public class ContactModificationTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         if (app.getContactHelper().list().size() == 0) {
-            app.getContactHelper().CreateContact(new ContactData("First", "Last", "867575", "sbs@example.com", "test"), true);
+            app.getContactHelper().CreateContact(new ContactData().withFirstname("Alex").withLastname("L").withPhone("89464").withEmail("wv@va.ru").withGroup("test"), true);
         }
     }
 
     @Test
     public void testContactModification () throws InterruptedException {
         List<ContactData> before = app.getContactHelper().list();
-        ContactData contact = new ContactData("First", "Last", "867575", "sbs@example.com", "test");
+        ContactData contact = new ContactData().withFirstname("Alex").withLastname("L").withPhone("89464").withEmail("wv@va.ru").withGroup("test");
         app.getContactHelper().modify(contact);
         List<ContactData> after = app.getContactHelper().list();
 

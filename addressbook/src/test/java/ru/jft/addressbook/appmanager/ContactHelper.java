@@ -26,11 +26,11 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), contactData.getPhone());
         type(By.name("email"), contactData.getEmail());
 
-        if (creation) {
+       /* if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
+        }*/
     }
 
     public void goTo() {
@@ -79,8 +79,7 @@ public class ContactHelper extends HelperBase {
         for (WebElement element : elements) {
             String name = element.findElements(By.tagName("td")).get(2).getText();
             String lastname = element.findElements(By.tagName("td")).get(1).getText();
-            ContactData contact = new ContactData (name, lastname, null, null, null);
-            contacts.add(contact);
+            contacts.add(new ContactData().withFirstname(name).withLastname(lastname));
         }
         return contacts;
     }

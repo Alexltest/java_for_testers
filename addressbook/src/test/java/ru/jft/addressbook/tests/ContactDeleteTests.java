@@ -13,7 +13,7 @@ public class ContactDeleteTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         if (app.getContactHelper().list().size() == 0) {
-            app.getContactHelper().CreateContact(new ContactData("First", "Last", "867575", "sbs@example.com", "test"), true);
+            app.getContactHelper().CreateContact(new ContactData().withFirstname("Alex").withLastname("L").withPhone("89464").withEmail("wv@va.ru").withGroup("test"), true);
         }
     }
 
