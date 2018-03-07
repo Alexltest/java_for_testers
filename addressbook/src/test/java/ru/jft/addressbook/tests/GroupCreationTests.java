@@ -4,8 +4,6 @@ import org.testng.annotations.Test;
 import ru.jft.addressbook.model.GroupData;
 import ru.jft.addressbook.model.Groups;
 
-import java.util.Set;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
