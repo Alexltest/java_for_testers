@@ -6,9 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.jft.addressbook.model.ContactData;
-import java.util.HashSet;
+import ru.jft.addressbook.model.Contacts;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -76,8 +75,8 @@ public class ContactHelper extends HelperBase {
         Thread.sleep(5000);
     }
 
-    public Set<ContactData> all() {
-        Set<ContactData> contacts = new HashSet<>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
             String name = element.findElements(By.tagName("td")).get(2).getText();
