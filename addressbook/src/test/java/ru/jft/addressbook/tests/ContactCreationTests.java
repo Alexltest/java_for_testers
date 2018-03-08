@@ -3,26 +3,21 @@ package ru.jft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.jft.addressbook.model.ContactData;
-
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class ContactCreationTests extends TestBase {
 
     @Test
     public void testContactCreation() {
-        List<ContactData> before = app.getContactHelper().list();
-        app.getContactHelper().goTo();
+        Set<ContactData> before = app.contact().all();
+        app.contact().goTo();
         ContactData contact = new ContactData().withFirstname("Alex").withLastname("L");
-        app.getContactHelper().CreateContact(contact, true);
-        List<ContactData> after = app.getContactHelper().list();
-
+        app.contact().create(contact, true);
+        Set<ContactData> after = app.contact().all();
         Assert.assertEquals(after.size(), before.size() + 1);
 
+        contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
         before.add(contact);
-        Comparator<ContactData> comparator = Comparator.comparing(ContactData::getLastname);
-        before.sort(comparator);
-        after.sort(comparator);
         Assert.assertEquals(before, after);
 
     }
