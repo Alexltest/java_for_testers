@@ -44,12 +44,18 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("home page"));
     }
 
-    public void select() {
+    public void select(int id) {
         click(By.name("selected[]"));
     }
 
-    public void delete() {
+    public void deleteContact() {
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    }
+
+
+    public void delete(ContactData contact) {
+        select(contact.getId());
+        deleteContact();
     }
 
     public void initContactModification() {
@@ -68,7 +74,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void modify(ContactData contact) throws InterruptedException {
-        select();
+        select(contact.getId());
         initContactModification();
         fillContactForm(contact, false);
         submitContactModification();
