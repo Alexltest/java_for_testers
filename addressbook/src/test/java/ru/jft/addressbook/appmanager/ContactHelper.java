@@ -40,8 +40,8 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("add new"));
     }
 
-    public void returnToContactPage() {
-        click(By.linkText("home page"));
+    public void goToContactPage() {
+        click(By.linkText("home"));
     }
 
     public void select(int id) {
@@ -71,7 +71,7 @@ public class ContactHelper extends HelperBase {
         fillContactForm(contact, b);
         submitContactCreation();
         contactCache = null;
-        returnToContactPage();
+        goToContactPage();
     }
 
     public void modify(ContactData contact) throws InterruptedException {

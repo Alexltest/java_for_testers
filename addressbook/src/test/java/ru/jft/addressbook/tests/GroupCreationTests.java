@@ -3,7 +3,6 @@ package ru.jft.addressbook.tests;
 import org.testng.annotations.Test;
 import ru.jft.addressbook.model.GroupData;
 import ru.jft.addressbook.model.Groups;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
