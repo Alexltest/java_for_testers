@@ -52,10 +52,10 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     }
 
-
     public void delete(ContactData contact) {
         select(contact.getId());
         deleteContact();
+        contactCache = null;
     }
 
     public void initContactModification() {
@@ -70,6 +70,7 @@ public class ContactHelper extends HelperBase {
         goTo();
         fillContactForm(contact, b);
         submitContactCreation();
+        contactCache = null;
         returnToContactPage();
     }
 
@@ -78,6 +79,7 @@ public class ContactHelper extends HelperBase {
         initContactModification();
         fillContactForm(contact, false);
         submitContactModification();
+        contactCache = null;
         Thread.sleep(5000);
     }
 
