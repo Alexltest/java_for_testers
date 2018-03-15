@@ -44,22 +44,19 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("home"));
     }
 
-    public void select(int id) {
-        click(By.name("selected[]"));
+    public void selectContactById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
-    public void deleteContact() {
-        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    public void deleteSelectedContact() {
+        click(By.cssSelector("input[value='Delete']"));
     }
 
     public void delete(ContactData contact) {
-        select(contact.getId());
-        deleteContact();
+        selectContactById(contact.getId());
+        deleteSelectedContact();
+        wd.switchTo().alert().accept();
         contactCache = null;
-    }
-
-    public void initContactModification() {
-        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
 
     public void submitContactModification() {
@@ -75,12 +72,15 @@ public class ContactHelper extends HelperBase {
     }
 
     public void modify(ContactData contact) throws InterruptedException {
-        select(contact.getId());
-        initContactModification();
+        initContactModificationById(contact.getId());
         fillContactForm(contact, false);
         submitContactModification();
         contactCache = null;
         Thread.sleep(5000);
+    }
+
+    public void initContactModificationById(int id) {
+        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
     }
 
     public int count() {
