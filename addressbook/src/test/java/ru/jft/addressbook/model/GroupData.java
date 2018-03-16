@@ -1,6 +1,16 @@
 package ru.jft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
+@XStreamAlias("groups")
 public class GroupData {
+    @XStreamOmitField
+    private int id = Integer.MAX_VALUE;
+    private String name;
+    private String header;
+    private String footer;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -18,11 +28,6 @@ public class GroupData {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
-
-    private int id = Integer.MAX_VALUE;
-    private String name;
-    private String header;
-    private String footer;
 
     @Override
     public String toString() {
