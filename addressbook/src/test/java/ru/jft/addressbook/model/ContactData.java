@@ -1,5 +1,7 @@
 package ru.jft.addressbook.model;
 
+import java.io.File;
+
 public class ContactData {
     private int id;
     private String firstname;
@@ -15,6 +17,7 @@ public class ContactData {
     private String email3;
     private String allPhones;
     private String allMails;
+    private File photo;
 
     @Override
     public boolean equals(Object o) {
@@ -110,6 +113,11 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
+
     public int getId() {
         return id;
     }
@@ -145,5 +153,7 @@ public class ContactData {
     public String getEmail3() { return email3; }
 
     public String getAllMails() { return allMails; }
+
+    public File getPhoto() { return photo; }
 
 }
