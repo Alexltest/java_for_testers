@@ -3,30 +3,60 @@ package ru.jft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.io.File;
 
 @XStreamAlias("contacts")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
     @XStreamOmitField
+    @Id
+    @Column(name = "id")
     private int id;
     @Expose
+    @Column(name = "firstname")
     private String firstname;
     @Expose
+    @Column(name = "lastname")
     private String lastname;
-    private String homePhone;
-    private String mobilePhone;
-    private String workPhone;
-    private String email;
     @Expose
+    @Column(name = "home")
+    @Type(type = "text")
+    private String homePhone;
+    @Expose
+    @Column(name = "mobile")
+    @Type(type = "text")
+    private String mobilePhone;
+    @Expose
+    @Column(name = "work")
+    @Type(type = "text")
+    private String workPhone;
+    @Expose
+    @Transient
     private String group;
     @Expose
+    @Column(name = "address")
+    @Type(type = "text")
     private String address;
+    @Column(name = "email")
+    @Type(type = "text")
     private String email1;
+    @Column(name = "email2")
+    @Type(type = "text")
     private String email2;
+    @Column(name = "email3")
+    @Type(type = "text")
     private String email3;
+    @Transient
     private String allPhones;
+    @Transient
     private String allMails;
-    private File photo;
+    @Column(name = "photo")
+    @Type(type = "text")
+    private String photo;
 
     @Override
     public boolean equals(Object o) {
@@ -123,7 +153,7 @@ public class ContactData {
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
@@ -163,6 +193,6 @@ public class ContactData {
 
     public String getAllMails() { return allMails; }
 
-    public File getPhoto() { return photo; }
+    public File getPhoto() { return new File(photo); }
 
 }
