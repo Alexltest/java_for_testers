@@ -23,19 +23,19 @@ public class ContactDeleteTests extends TestBase {
                 app.group().create(groupData);
             } else {
                 groupData = groups.iterator().next();
-            }
-                app.contact().create(new ContactData()
-                    .withFirstname("Alex")
-                    .withLastname("L")
-                    .withHomePhone("4343")
-                    .withMobilePhone("89464")
-                    .withWorkPhone("445")
-                    .withEmail1("wv@va.ru")
-                    .withEmail2("wv@va.ru")
-                    .withEmail3("wv@va.ru")
-                    .withAddress("adadad")
-                    .inGroup(groupData)
-                    , true);
+        }
+         app.contact().create(new ContactData()
+             .withFirstname("Alex")
+             .withLastname("L")
+             .withHomePhone("4343")
+             .withMobilePhone("89464")
+             .withWorkPhone("445")
+             .withEmail1("wv@va.ru")
+             .withEmail2("wv@va.ru")
+             .withEmail3("wv@va.ru")
+             .withAddress("adadad")
+             .inGroup(groupData)
+             , true);
         }
     }
 

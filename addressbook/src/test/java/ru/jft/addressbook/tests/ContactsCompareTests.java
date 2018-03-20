@@ -14,7 +14,7 @@ public class ContactsCompareTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        if (app.contact().all().size() == 0) {
+        if (app.contact().all().isEmpty()) {
             app.contact().create(new ContactData()
                     .withFirstname("Alex")
                     .withLastname("L")
