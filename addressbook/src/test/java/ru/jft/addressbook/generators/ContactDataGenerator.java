@@ -81,8 +81,8 @@ public class ContactDataGenerator {
             contacts.add(new ContactData()
                     .withFirstname(String.format("firstname %s", i))
                     .withLastname(String.format("lastname %s", i))
-                    .withAddress(String.format("address %s", i))
-                    .withGroup("test"));
+                    .withAddress(String.format("address %s", i)));
+                    //.withGroup("test"));
         }
         return contacts;
     }

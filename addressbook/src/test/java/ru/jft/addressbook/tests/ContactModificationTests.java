@@ -23,7 +23,8 @@ public class ContactModificationTests extends TestBase {
                     .withEmail2("wv@va.ru")
                     .withEmail3("wv@va.ru")
                     .withAddress("adadad")
-                    .withGroup("test"), true);
+                    //.withGroup("test")
+                    , true);
         }
     }
 
@@ -31,7 +32,8 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification () throws InterruptedException {
         Contacts before = app.db().contacts();
         ContactData modifiedContact = before.iterator().next();
-        ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Alex").withLastname("L").withMobilePhone("89464").withEmail1("wv@va.ru").withGroup("test");
+        ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Alex").withLastname("L").withMobilePhone("89464").withEmail1("wv@va.ru");
+                //.withGroup("test");
         app.contact().modify(contact);
         assertThat(app.contact().count(), equalTo(before.size()));
         Contacts after = app.db().contacts();
