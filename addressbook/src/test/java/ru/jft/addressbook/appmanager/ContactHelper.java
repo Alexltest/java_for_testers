@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.jft.addressbook.model.ContactData;
 import ru.jft.addressbook.model.Contacts;
+import ru.jft.addressbook.model.GroupData;
+
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -65,8 +67,36 @@ public class ContactHelper extends HelperBase {
         contactCache = null;
     }
 
+    public void add(ContactData contact) {
+        selectContactById(contact.getId());
+        submitContactAddInGroup();
+        goToContactPage();
+        contactCache = null;
+    }
+
+    public void remove(ContactData contact, GroupData group) {
+        selectRemovedContactById(contact.getId());
+        goToContactsFromGroupsPage(group.getId());
+        selectContactById(contact.getId());
+        submitContactRemoveFromGroup();
+        goToContactPage();
+        contactCache = null;
+    }
+
+    public void goToContactsFromGroupsPage(int group) {
+        wd.findElement(By.cssSelector(String.format("a[href='./index.php?group=%s']", group))).click();
+    }
+
     public void submitContactModification() {
         click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+    }
+
+    public void submitContactAddInGroup() {
+        click(By.cssSelector("input[name='add']"));
+    }
+
+    public void submitContactRemoveFromGroup() {
+        click(By.cssSelector("input[name='remove']"));
     }
 
     public void create(ContactData contact, boolean b) {
@@ -87,6 +117,10 @@ public class ContactHelper extends HelperBase {
 
     public void initContactModificationById(int id) {
         wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+    }
+
+    public void selectRemovedContactById(int id) {
+        wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
     }
 
     public int count() {

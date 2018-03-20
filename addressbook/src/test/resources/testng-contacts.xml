@@ -7,6 +7,8 @@
             <class name="ru.jft.addressbook.tests.ContactDeleteTests" />
             <class name="ru.jft.addressbook.tests.ContactModificationTests" />
             <class name="ru.jft.addressbook.tests.ContactsCompareTests" />
+            <class name="ru.jft.addressbook.tests.ContactAddInGroupTests" />
+            <class name="ru.jft.addressbook.tests.ContactDeleteFromGroupTests" />
         </classes>
     </test>
 </suite>
