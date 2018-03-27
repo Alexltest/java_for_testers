@@ -43,7 +43,9 @@ public class ContactDeleteFromGroupTests extends TestBase{
     public void testContactDeleteFromGroup() {
         Contacts before = app.db().contacts();
         ContactData removedContact = before.iterator().next();
-        app.contact().remove(removedContact);
+        Groups list = app.db().groups();
+        GroupData firstgroup = list.iterator().next();
+        app.contact().remove(removedContact, firstgroup);
         assertThat(app.contact().count(), equalTo(before.size() - 1));
         Contacts after = app.db().contacts();
         assertThat(after, equalTo(before));
