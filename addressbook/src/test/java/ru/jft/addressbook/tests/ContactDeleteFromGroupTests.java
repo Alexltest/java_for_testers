@@ -6,9 +6,6 @@ import ru.jft.addressbook.model.ContactData;
 import ru.jft.addressbook.model.Contacts;
 import ru.jft.addressbook.model.GroupData;
 import ru.jft.addressbook.model.Groups;
-
-import java.security.acl.Group;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -45,6 +42,10 @@ public class ContactDeleteFromGroupTests extends TestBase{
         ContactData removedContact = before.iterator().next();
         Groups list = app.db().groups();
         GroupData firstgroup = list.iterator().next();
+        if (removedContact.getGroups().isEmpty()) {
+            ContactData addedContact = before.iterator().next();
+            app.contact().add(addedContact);
+        }
         app.contact().remove(removedContact, firstgroup);
         assertThat(app.contact().count(), equalTo(before.size() - 1));
         Contacts after = app.db().contacts();
