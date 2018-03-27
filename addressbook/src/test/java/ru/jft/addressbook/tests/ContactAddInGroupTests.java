@@ -19,7 +19,10 @@ public class ContactAddInGroupTests extends TestBase{
 
             if (groups.isEmpty()) {
                 app.goTo().GroupPage();
-                groupData = new GroupData().withName("test").withHeader("header").withFooter("footer");
+                groupData = new GroupData()
+                        .withName("test")
+                        .withHeader("header")
+                        .withFooter("footer");
                 app.group().create(groupData);
             } else {
                 groupData = groups.iterator().next();
@@ -27,7 +30,7 @@ public class ContactAddInGroupTests extends TestBase{
             app.contact().create(new ContactData()
                             .withFirstname("Alex")
                             .withLastname("L")
-                            .withHomePhone("43443")
+                            .withHomePhone("4343")
                             .withMobilePhone("89464")
                             .withWorkPhone("445")
                             .withEmail1("wv@va.ru")

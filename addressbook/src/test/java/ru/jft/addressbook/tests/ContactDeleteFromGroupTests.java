@@ -19,8 +19,13 @@ public class ContactDeleteFromGroupTests extends TestBase{
 
             if (groups.isEmpty()) {
                 app.goTo().GroupPage();
-                groupData = new GroupData().withName("test").withHeader("header").withFooter("footer");
+                groupData = new GroupData()
+                        .withName("test")
+                        .withHeader("header")
+                        .withFooter("footer");
                 app.group().create(groupData);
+            } else {
+                groupData = groups.iterator().next();
             }
             app.contact().create(new ContactData()
                             .withFirstname("Alex")
@@ -32,7 +37,8 @@ public class ContactDeleteFromGroupTests extends TestBase{
                             .withEmail2("wv@va.ru")
                             .withEmail3("wv@va.ru")
                             .withAddress("adadad")
-                            , true);
+                            .inGroup(groupData)
+                    , true);
         }
     }
 
