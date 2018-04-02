@@ -32,6 +32,6 @@ public class SoapTest extends TestBase {
 
     @Test
     public void checkStatus() {
-        app.soap().getIssues();
+
     }
 }
