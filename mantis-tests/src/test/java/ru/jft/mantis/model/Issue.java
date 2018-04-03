@@ -6,16 +6,6 @@ public class Issue {
     private String summary;
     private String description;
     private Project project;
-    private Status status;
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public Issue withStatus(Status status) {
-        this.status = status;
-        return this;
-    }
 
     public int getId() {
         return id;
