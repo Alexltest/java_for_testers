@@ -13,8 +13,7 @@ public class TestBase {
         return Executor.newInstance().auth("28accbe43ea112d9feb328d2c00b3eed", "");
     }
 
-    boolean isIssueOpen() throws IOException {
-        int issueId = 1236;
+    boolean isIssueOpen(int issueId) throws IOException {
         String json = getExecutor().execute(Get("http://demo.bugify.com/api/issues/" + issueId + ".json")).returnContent().asString();
         JsonElement parsed = new JsonParser().parse(json);
         JsonElement issues = parsed.getAsJsonObject().get("issues");
@@ -26,7 +25,7 @@ public class TestBase {
     }
 
     public void skipIfNotFixed(int issueId) throws IOException {
-        if (isIssueOpen()) {
+        if (isIssueOpen(issueId)) {
             throw new SkipException("Ignored because of issue " + issueId);
         }
     }
