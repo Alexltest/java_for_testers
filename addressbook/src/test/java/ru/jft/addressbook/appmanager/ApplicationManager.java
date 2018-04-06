@@ -40,24 +40,23 @@ public class ApplicationManager {
                 wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C:/Program Files/Mozilla Firefox ESR/firefox.exe"));
             } else if (browser.equals(BrowserType.CHROME)) {
                 wd = new ChromeDriver();
-            }
-            if (browser.equals(BrowserType.IE)) {
+            } else if (browser.equals(BrowserType.IE)) {
                 wd = new InternetExplorerDriver();
-        } else {
+            }
+            } else {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setBrowserName(browser);
                 wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
             }
-        }
 
-        //wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        wd.get(properties.getProperty("web.baseUrl"));
-        groupHelper = new GroupHelper(wd);
-        navigationHelper = new NavigationHelper(wd);
-        sessionHelper = new SessionHelper(wd);
-        contactHelper = new ContactHelper(wd);
-        sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
-    }
+            //wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+            wd.get(properties.getProperty("web.baseUrl"));
+            groupHelper = new GroupHelper(wd);
+            navigationHelper = new NavigationHelper(wd);
+            sessionHelper = new SessionHelper(wd);
+            contactHelper = new ContactHelper(wd);
+            sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+        }
 
     public void stop() {
         wd.quit();
